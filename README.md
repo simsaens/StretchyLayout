@@ -275,7 +275,7 @@ First, if we over-scroll past the bottom of the view we get to see the ugly
 grey background of our view controller. We can use the exact same method to
 stretch our backing view out when we over-scroll past the bottom of the view.
 
-![Scroll Bug](Article/TextOverscroll.gif)
+![Text Overscroll](Article/TextOverscroll.gif)
 
 > Note: To get the code at this point do `git checkout Step-4`
 
@@ -284,21 +284,47 @@ automatic content inset adjustment of our scroll view in order to let our image
 content go right to the top of the screen. So we'll have to manually handle
 the bottom inset using the new `safeAreaInsets` property in iOS 11.
 
-[Before after text home indicator]
-
 Third, we also want to use `safeAreaInsets` to adjust our scroll
 view's scrolling indicators so they don't run into the curved edges of the
 screen on iPhone X.
 
-[Before after scroll indicator]
+To fix these two issues we'll override `viewDidLayoutSubviews` and manually
+set the bottom inset of the scroll view. iOS 11 would normally do this for
+us automatically, but we *don't* want the top inset set, because we want our
+header image flush behind the status bar.
+
+```
+override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+
+    //** We want the scroll indicators to use all safe area insets
+    scrollView.scrollIndicatorInsets = view.safeAreaInsets
+
+    //** But we want the actual content inset to just respect the bottom safe inset
+    scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.safeAreaInsets.bottom, right: 0)
+}
+```
+
+This gives us the following appearance when scrolled all the way to the end.
+Note that the scroll indicator is no longer lost behind the curve, and we get
+much more space above the home indicator.
+
+![Fixed Safe Area](Article/FixedSafeArea.png)
 
 > Note: To get the code at this point do `git checkout Step-5`
 
-And fourth, let's hide the status bar with a cool animation when the user
+And fourth, our text is overlapping the status bar when we scroll up. This
+looks gross.
+
+[Status bar screenshot]
+
+Let's hide the status bar with a cool animation when the user
 scrolls the text into the status bar area. It's quite easy to detect this and
 I think the effect looks great.
 
 [Animated GIF status bar hide]
+
+> Note: To get the code at this point do `git checkout Step-6`
 
 ## What We Covered
 
