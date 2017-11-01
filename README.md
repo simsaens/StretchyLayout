@@ -271,6 +271,8 @@ to scroll up and read the text.
 
 There's four jarring problems we should fix while we're here.
 
+#### Text Over-Scrolling
+
 First, if we over-scroll past the bottom of the view we get to see the ugly
 grey background of our view controller. We can use the exact same method to
 stretch our backing view out when we over-scroll past the bottom of the view.
@@ -282,6 +284,8 @@ view above. We add an additional text backing view behind our text container,
 and then pin its bottom edge to the root view's bottom edge.
 
 > Note: To get the code at this point do `git checkout Step-4`
+
+#### Respecting the Safe Area
 
 Second, on iPhone X our text overlaps the home indicator. We disabled the
 automatic content inset adjustment of our scroll view in order to let our image
@@ -316,6 +320,8 @@ much more space above the home indicator.
 ![Fixed Safe Area](Article/FixedSafeArea.png)
 
 > Note: To get the code at this point do `git checkout Step-5`
+
+#### Hiding the Status Bar When Needed
 
 And fourth, our text is overlapping the status bar when we scroll up. This
 looks gross.
