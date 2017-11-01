@@ -178,7 +178,7 @@ imageView.snp.makeConstraints {
 
     //** These are the key lines! **
     make.top.equalTo(view)
-    make.bottom.equalTo(imageContainer.snp.top)
+    make.bottom.equalTo(imageContainer.snp.bottom)
 }
 ```
 
@@ -226,13 +226,16 @@ We have to change how we constrain the image view. Here's the change:
 imageView.snp.makeConstraints {
     make in
 
-    make.left.right.equalTo(view)
+    make.left.right.equalTo(imageContainer)
 
-    //Note the priorities
-    make.top.equalTo(view).priority(.medium)
-    make.height.greaterThanOrEqualTo(imageContainer.snp.height).priority(.high)
+    //** Note the priorities
+    make.top.equalTo(view).priority(.high)
 
-    make.bottom.equalTo(backing.snp.top)
+    //** We add a height constraint too
+    make.height.greaterThanOrEqualTo(imageContainer.snp.height).priority(.required)
+
+    //** And keep the bottom constraint
+    make.bottom.equalTo(imageContainer.snp.bottom)
 }
 ```
 
@@ -242,11 +245,11 @@ conflicting constraints and they will be broken in priority order.
 This is necessary to achieve the effect we want.
 
 First we keep our original constraint: the top of our image view is pinned to
-the top of our view. We give this a priority of `.medium`.
+the top of our view. We give this a priority of `.high`.
 
 Then we add an additional constraint: the height of our image must be greater
 than or equal to the height of the image container behind it (recall our image
-container has the aspect ratio constraint). This has a `.high` priority.
+container has the aspect ratio constraint). This has a `.required` priority.
 
 So what happens when we scroll up?
 
@@ -255,6 +258,12 @@ than the top constraint. So when we scroll up Auto Layout will break the
 lowest priority constraint in order to solve the system. It will break the top
 constraint and our scrolling behaviour will revert to normal, allowing us
 to scroll up and read the text.
+
+(Note that you can also remove the height constraint in this instance and simply
+  set the top constraint priority to `.high`. This will allow iOS to break the
+  top constraint *and* compress the image view to zero height. Given the
+  `.scaleAspectFill` content mode, this creates a parallax-like effect. Try it
+  out!)
 
 > Note: To get the code at this point do `git checkout Step-3`
 
