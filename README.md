@@ -322,7 +322,58 @@ Let's hide the status bar with a cool animation when the user
 scrolls the text into the status bar area. It's quite easy to detect this and
 I think the effect looks great.
 
-[Animated GIF status bar hide]
+![Status Bar Hide](Article/StatusBarHide.gif)
+
+How do we do this? It's pretty easy:
+
+* We convert the `textContainer`'s rect to screen coordinates
+* We check if the minimum Y of that frame is less than the view's top safe area
+inset (this indicates the text container is moving into the status bar area)
+* If so, we hide the status bar. If not, we show the status bar.
+
+We perform this check in the `scrollViewDidScroll(_:)` method of the
+`UIScrollViewDelegate`. (So we make our `StretchyViewController` implement this
+delegate and set itself as the delegate for its scroll view.)
+
+Here's the code for the status bar check:
+
+```
+//MARK: - Scroll View Delegate
+
+private var previousStatusBarHidden = false
+
+func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //** We keep the previous status bar hidden state so that
+    // we're not triggering an implicit animation block for every frame
+    // in which the scroll view scrolls
+    if previousStatusBarHidden != shouldHideStatusBar {
+
+        UIView.animate(withDuration: 0.2, animations: {
+            self.setNeedsStatusBarAppearanceUpdate()
+        })
+
+        previousStatusBarHidden = shouldHideStatusBar
+    }
+}
+
+//MARK: - Status Bar Appearance
+
+override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    //** We use the slide animation because it works well with scrolling
+    return .slide
+}
+
+override var prefersStatusBarHidden: Bool {
+    return shouldHideStatusBar
+}
+
+private var shouldHideStatusBar: Bool {
+    //** Here's where we calculate if our text container
+    // is going to hit the top safe area
+    let frame = textContainer.convert(textContainer.bounds, to: nil)
+    return frame.minY < view.safeAreaInsets.top
+}
+```
 
 > Note: To get the code at this point do `git checkout Step-6`
 
