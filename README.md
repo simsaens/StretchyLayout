@@ -328,7 +328,7 @@ I think the effect looks great.
 
 ![Status Bar Hide](Article/StatusBarHide.gif)
 
-How do we do this? It's pretty easy:
+How do we do this?
 
 * We convert the `textContainer`'s rect to screen coordinates
 * We check if the minimum Y of that frame is less than the view's top safe area
