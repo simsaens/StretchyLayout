@@ -80,7 +80,7 @@ imageView.snp.makeConstraints {
 
 //Pin the backing view below the image view and to the
 // bottom of the scroll view
-backing.snp.makeConstraints {
+textContainer.snp.makeConstraints {
     make in
 
     make.top.equalTo(imageView.snp.bottom)
@@ -94,7 +94,7 @@ backing.snp.makeConstraints {
 infoText.snp.makeConstraints {
     make in
 
-    make.edges.equalTo(backing).inset(14)
+    make.edges.equalTo(textContainer).inset(14)
 }
 ```
 
@@ -174,11 +174,11 @@ scrollView.addSubview(imageView)
 imageView.snp.makeConstraints {
     make in
 
-    make.left.right.equalTo(view)
+    make.left.right.equalTo(imageContainer)
 
     //** These are the key lines! **
     make.top.equalTo(view)
-    make.bottom.equalTo(backing.snp.top)
+    make.bottom.equalTo(imageContainer.snp.top)
 }
 ```
 
@@ -204,6 +204,8 @@ over-scroll the scroll view.
 If you run this code, dragging down on the screen with your finger produces
 the desired effect: the image scales up and bounces back. But if you scroll up
 to read the text ... well, you'll realise that you can't.
+
+![Scroll Bug](Article/ScrollBug.gif)
 
 Why?
 
@@ -285,7 +287,7 @@ I think the effect looks great.
 
 [Animated GIF status bar hide]
 
-> Note: To get the code at this point do `git checkout Step-7`
+> Note: To get the code at this point do `git checkout Step-4`
 
 ## What We Covered
 
