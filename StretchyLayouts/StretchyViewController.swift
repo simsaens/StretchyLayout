@@ -14,6 +14,7 @@ class StretchyViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let infoText = UILabel()
     private let imageView = UIImageView()
+    private let textContainer = UIView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -39,17 +40,20 @@ class StretchyViewController: UIViewController {
                     """
         infoText.text = text + text + text
         
-        let textContainer = UIView()
-        textContainer.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1235740449, blue: 0.2699040081, alpha: 1)
-        
         let imageContainer = UIView()
         imageContainer.backgroundColor = .darkGray
+        
+        textContainer.backgroundColor = .clear
+        
+        let textBacking = UIView()
+        textBacking.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1235740449, blue: 0.2699040081, alpha: 1)
         
         view.addSubview(scrollView)
         
         scrollView.addSubview(imageContainer)
-        scrollView.addSubview(imageView)
+        scrollView.addSubview(textBacking)
         scrollView.addSubview(textContainer)
+        scrollView.addSubview(imageView)
         
         textContainer.addSubview(infoText)
         
@@ -88,6 +92,14 @@ class StretchyViewController: UIViewController {
             make.top.equalTo(imageContainer.snp.bottom)
             make.left.right.equalTo(view)
             make.bottom.equalTo(scrollView)
+        }
+        
+        textBacking.snp.makeConstraints {
+            make in
+            
+            make.left.right.equalTo(view)
+            make.top.equalTo(textContainer)
+            make.bottom.equalTo(view)
         }
         
         infoText.snp.makeConstraints {

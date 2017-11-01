@@ -269,7 +269,7 @@ to scroll up and read the text.
 
 ## Polishing the Details
 
-There's three more jarring problems we should fix while we're here.
+There's four jarring problems we should fix while we're here.
 
 First, if we over-scroll past the bottom of the view we get to see the ugly
 grey background of our view controller. We can use the exact same method to
@@ -284,13 +284,13 @@ the bottom inset using the new `safeAreaInsets` property in iOS 11.
 
 [Before after text home indicator]
 
-Second part (b), we also want to use `safeAreaInsets` to adjust our scroll
+Third, we also want to use `safeAreaInsets` to adjust our scroll
 view's scrolling indicators so they don't run into the curved edges of the
 screen on iPhone X.
 
 [Before after scroll indicator]
 
-And third, let's hide the status bar with a cool animation when the user
+And fourth, let's hide the status bar with a cool animation when the user
 scrolls the text into the status bar area. It's quite easy to detect this and
 I think the effect looks great.
 
