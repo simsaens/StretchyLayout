@@ -277,6 +277,8 @@ stretch our backing view out when we over-scroll past the bottom of the view.
 
 [Before after over-scroll]
 
+> Note: To get the code at this point do `git checkout Step-4`
+
 Second, on iPhone X our text overlaps the home indicator. We disabled the
 automatic content inset adjustment of our scroll view in order to let our image
 content go right to the top of the screen. So we'll have to manually handle
@@ -290,13 +292,13 @@ screen on iPhone X.
 
 [Before after scroll indicator]
 
+> Note: To get the code at this point do `git checkout Step-5`
+
 And fourth, let's hide the status bar with a cool animation when the user
 scrolls the text into the status bar area. It's quite easy to detect this and
 I think the effect looks great.
 
 [Animated GIF status bar hide]
-
-> Note: To get the code at this point do `git checkout Step-4`
 
 ## What We Covered
 
