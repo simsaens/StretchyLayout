@@ -88,8 +88,8 @@ textContainer.snp.makeConstraints {
     make.bottom.equalTo(scrollView)
 }
 
-//Pin the edges of the text to the backing view, this
-// will force the backing view to grow to encompass the
+//Pin the edges of the text to the text container view, this
+// will force the text container to grow to encompass the
 // text's height
 infoText.snp.makeConstraints {
     make in
@@ -316,7 +316,7 @@ much more space above the home indicator.
 And fourth, our text is overlapping the status bar when we scroll up. This
 looks gross.
 
-[Status bar screenshot]
+![Status Bar Overlap](Article/StatusBarOverlap.png)
 
 Let's hide the status bar with a cool animation when the user
 scrolls the text into the status bar area. It's quite easy to detect this and
