@@ -239,15 +239,15 @@ imageView.snp.makeConstraints {
 }
 ```
 
-Notice that we now have a top constraint, a bottom constraint, *and* a height
+Notice how we now have a top constraint, a bottom constraint, *and* a height
 constraint? This is one of the awesome things about Auto Layout: we can have
 conflicting constraints and they will be broken in priority order.
 This is necessary to achieve the effect we want.
 
-First we keep our original constraint: the top of our image view is pinned to
+First we keep our original constraint. The top of our image view is pinned to
 the top of our view. We give this a priority of `.high`.
 
-Then we add an additional constraint: the height of our image must be greater
+We then add an additional constraint: the height of our image must be greater
 than or equal to the height of the image container behind it (recall our image
 container has the aspect ratio constraint). This has a `.required` priority.
 
@@ -263,7 +263,7 @@ to scroll up and read the text.
   set the top constraint priority to `.high`. This will allow iOS to break the
   top constraint *and* compress the image view to zero height. Given the
   `.scaleAspectFill` content mode, this creates a parallax-like effect. Try it
-  out!)
+  out. You might prefer the way it looks.)
 
 > Note: To get the code at this point do `git checkout Step-3`
 
@@ -276,6 +276,10 @@ grey background of our view controller. We can use the exact same method to
 stretch our backing view out when we over-scroll past the bottom of the view.
 
 ![Text Overscroll](Article/TextOverscroll.gif)
+
+I won't go into the code as it's basically the same technique as the image
+view above. We add an additional text backing view behind our text container,
+and then pin its bottom edge to the root view's bottom edge.
 
 > Note: To get the code at this point do `git checkout Step-4`
 
