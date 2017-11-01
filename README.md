@@ -275,7 +275,7 @@ First, if we over-scroll past the bottom of the view we get to see the ugly
 grey background of our view controller. We can use the exact same method to
 stretch our backing view out when we over-scroll past the bottom of the view.
 
-[Before after over-scroll]
+![Scroll Bug](Article/TextOverscroll.gif)
 
 > Note: To get the code at this point do `git checkout Step-4`
 
