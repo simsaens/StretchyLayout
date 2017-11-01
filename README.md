@@ -1,8 +1,8 @@
 # Stretchy Layouts on iOS Using Auto Layout
 
-Check the image below. This is a cool effect.
-
 ![Final Result](Article/FinalEffect.gif)
+
+Check the image above. This is a cool effect.
 
 And it's really easy to build in iOS using Auto Layout. I want to
 write about this because the effect is so simple, and Auto Layout
@@ -16,16 +16,16 @@ going all-in on iOS 11 for this example.
 
 ```
 git clone https://github.com/TwoLivesLeft/StretchyLayout.git
-cd StretchyLayouts
-git checkout Initial-App
+cd StretchyLayout
+git checkout Step-1
 ```
 
 Here's how we'll do this
 
 * Start with the basic non-stretchy app
-* We will modify the view hierarchy and add the necessary constraints to
+* Modify the view hierarchy to add the necessary constraints to
 make it stretchy
-* Then we'll follow a few more steps to add polish to the app
+* Add polish to the app
 
 ## The non-Stretchy App
 
@@ -33,11 +33,12 @@ make it stretchy
 
 Here's the view hierarchy for the basic version of the app. You can see it has
 three views. The header `UIImageView`, the red backing behind the text, and the
-long `UILabel` containing our text content.
+long `UILabel` containing our text content. The bright red lines represent our
+Auto Layout constraints.
 
 We're going to build this using an Auto Layout framework called
 [SnapKit](http://snapkit.io). SnapKit is a simple iOS framework that makes
-Apple's Auto Layout API ... sane. It's dead simple to use and makes
+Apple's Auto Layout API... sane. It's dead simple to use and makes
 programming with Auto Layout genuinely pleasurable.
 
 Most of the code will live in `viewDidLoad` of our
@@ -97,7 +98,7 @@ infoText.snp.makeConstraints {
 }
 ```
 
-> Note: To get the code at this point do `git checkout Initial-App`
+> Note: To get the code at this point do `git checkout Step-1`
 
 ## A Brief Aside
 
@@ -196,7 +197,7 @@ because we're using:
 We're going to see the image content scale up within the image view as we
 over-scroll the scroll view.
 
-> Note: To get the code at this point do `git checkout Basic-Stretchy-Layout`
+> Note: To get the code at this point do `git checkout Step-2`
 
 ### But there's a bug
 
@@ -253,7 +254,7 @@ lowest priority constraint in order to solve the system. It will break the top
 constraint and our scrolling behaviour will revert to normal, allowing us
 to scroll up and read the text.
 
-> Note: To get the code at this point do `git checkout Fixing-The-Bug`
+> Note: To get the code at this point do `git checkout Step-3`
 
 ## Polishing the Details
 
