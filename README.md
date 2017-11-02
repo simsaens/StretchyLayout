@@ -32,9 +32,10 @@ make it stretchy
 ![Initial View Hierarchy](Article/InitialViewHierarchy.png)
 
 Here's the view hierarchy for the basic version of the app. You can see it has
-three views. The header `UIImageView`, the red backing behind the text, and the
+three main views. The header `UIImageView`, the container for the text, and the
 long `UILabel` containing our text content. The bright red lines represent our
-Auto Layout constraints.
+Auto Layout constraints. There's also a `UIScrollView` and the root view of our
+view controller.
 
 We're going to build this using an Auto Layout framework called
 [SnapKit](http://snapkit.io). SnapKit is a simple iOS framework that makes
@@ -42,7 +43,7 @@ Apple's Auto Layout API... sane. It's dead simple to use and makes
 programming with Auto Layout genuinely pleasurable.
 
 Most of the code will live in `viewDidLoad` of our
-`StretchyViewController.swift` class. Below you can see how the initial
+`StretchyViewController` class. Below you can see how the initial
 constraints are set.
 
 Our views are declared as private members:
