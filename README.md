@@ -299,8 +299,11 @@ screen on iPhone X.
 
 To fix these two issues we'll override `viewDidLayoutSubviews` and manually
 set the bottom inset of the scroll view. iOS 11 would normally do this for
-us automatically, but we *don't* want the top inset set, because we want our
+us automatically, but we *don't* want to inset the top, because we want our
 header image flush behind the status bar.
+
+We have told iOS 11 not to touch our scroll view by setting its
+`contentInsetAdjustmentBehavior` to `.never`.
 
 ```
 override func viewDidLayoutSubviews() {
