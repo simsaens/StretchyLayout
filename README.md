@@ -199,7 +199,7 @@ over-scroll the scroll view.
 
 > Note: To get the code at this point do `git checkout Step-2`
 
-### But there's a bug
+### But There's a Bug
 
 If you run this code, dragging down on the screen with your finger produces
 the desired effect: the image scales up and bounces back. But if you scroll up
@@ -269,11 +269,11 @@ to scroll up and read the text.
 
 ## Polishing the Details
 
-There's four jarring problems we should fix while we're here.
+There are three jarring problems we should fix while we're here.
 
-#### Text Over-Scrolling
+#### 1. Text Over-Scrolling
 
-First, if we over-scroll past the bottom of the view we get to see the ugly
+If we over-scroll past the bottom of the view we get to see the ugly
 grey background of our view controller. We can use the exact same method to
 stretch our backing view out when we over-scroll past the bottom of the view.
 
@@ -285,14 +285,14 @@ and then pin its bottom edge to the root view's bottom edge.
 
 > Note: To get the code at this point do `git checkout Step-4`
 
-#### Respecting the Safe Area
+#### 2. Respecting the Safe Area
 
-Second, on iPhone X our text overlaps the home indicator. We disabled the
+On iPhone X our text overlaps the home indicator. We disabled the
 automatic content inset adjustment of our scroll view in order to let our image
 content go right to the top of the screen. So we'll have to manually handle
 the bottom inset using the new `safeAreaInsets` property in iOS 11.
 
-Third, we also want to use `safeAreaInsets` to adjust our scroll
+We also want to use `safeAreaInsets` to adjust our scroll
 view's scrolling indicators so they don't run into the curved edges of the
 screen on iPhone X.
 
@@ -321,9 +321,9 @@ much more space above the home indicator.
 
 > Note: To get the code at this point do `git checkout Step-5`
 
-#### Hiding the Status Bar When Needed
+#### 3. Hiding the Status Bar When Needed
 
-And fourth, our text is overlapping the status bar when we scroll up. This
+Our text is overlapping the status bar when we scroll up. This
 looks gross.
 
 ![Status Bar Overlap](Article/StatusBarOverlap.png)
